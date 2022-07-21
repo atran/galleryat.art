@@ -1,16 +1,35 @@
 <html>
   <head>
-    <link rel="stylesheet" href="cutestrap.min.css" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    
+    <title>Raffle - Gallery AT</title>
+
+    <meta name="description" content="">
     <meta property="og:image" content="https://galleryat.art/raffle/crab.jpg" />
 
-    <meta charset="utf-8">
-    <title>Raffle - Gallery AT</title>
-    <meta name="description" content="">
+    <link rel="stylesheet" href="cutestrap.min.css" />
   </head>
 
   <body>
-    <section class="wrapper">
+    <style>
+      .svg-filter {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+      }
+
+      .filtered {
+        filter: url(#n1);
+      }
+    </style>
+
+    <section class="wrapper filtered">
+      <hr />
+
       <p class="submitted" style="visibility: hidden;"><i>Thanks, want to do it again?</i> &#9759;</p>
 
       <h5>🎟️ Gallery AT Art Raffle @ Cha Cha</h5>
@@ -58,7 +77,63 @@
         Todd Colby - die K&#252;che (2016)<br />3"x6"
       </figcaption>
     </figure>
-  
+
+    <p class="wrapper"><a href="/">Gallery AT</a> is developing new forms of documentation & distribution for performance.</p>
+
+    <svg class="svg-filter">
+      <defs>
+          <filter id="n0">
+              <feTurbulence type="turbulence" baseFrequency="0.001 0.1" numOctaves="5" result="NOISE"></feTurbulence>
+              <feGaussianBlur in="SourceGraphic" result="BLURRED" stdDeviation="4.5"></feGaussianBlur>
+              <feDisplacementMap in2="NOISE" in="BLURRED" scale="50" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+          </filter>
+          <filter id="n1">
+              <feTurbulence type="fractalNoise" baseFrequency="0.001 0.001" numOctaves="5" result="NOISE" seed="061352"></feTurbulence>
+              <feGaussianBlur in="SourceGraphic" result="BLURRED" stdDeviation="0"></feGaussianBlur>
+              <feDisplacementMap id="displacer" in2="NOISE" in="BLURRED" scale="15" xChannelSelector="R" yChannelSelector="R" result="DISPLACED"></feDisplacementMap>
+          </filter>
+          <filter id="n2" color-interpolation-filters="sRGB">
+              <feTurbulence type="fractalNoise" baseFrequency="0.001 0.001" numOctaves="5" result="NOISE" seed="061352"></feTurbulence>
+              <feGaussianBlur in="SourceGraphic" result="BLURRED" stdDeviation="0"></feGaussianBlur>
+              <feDisplacementMap id="displacer" in2="NOISE" in="BLURRED" scale="15" xChannelSelector="R" yChannelSelector="R" result="DISPLACED"></feDisplacementMap>
+
+              <feColorMatrix in="DISPLACED"
+                  result="RED"
+                  type="matrix"
+                  values="0 0 0 0 0
+                          0 1 0 0 0
+                          0 0 1 0 0
+                          0 0 0 1 0" />
+                          
+              <feColorMatrix in="DISPLACED"
+                  result="GREEN"
+                  type="matrix"
+                  values="1 0 0 0 0
+                          0 0 0 0 0
+                          0 0 1 0 0
+                          0 0 0 1 0" />
+              
+              <feColorMatrix in="DISPLACED"
+                  result="BLUE"
+                  type="matrix"
+                  values="1 0 0 0 0
+                          0 1 0 0 0
+                          0 0 0 0 0
+                          0 0 0 1 0" />
+                          
+              <feOffset in="RED" dx="-3" dy="0" result="D_RED" />
+              <feOffset in="GREEN" dx="0" dy="0" result="D_GREEN" />
+              <feOffset in="BLUE" dx="3" dy="0" result="D_BLUE" />
+
+              <feBlend in="D_RED" in2="D_BLUE" out="RB" mode="multiply"/>
+              
+              <feBlend in="D_GREEN" in2="RB" out="RGB" mode="multiply"/>
+
+              
+          </filter>
+      </defs>
+    </svg>
+
     <script>
       function showPreview(event){
         if(event.target.files.length > 0){
@@ -75,8 +150,6 @@
       }
     </script>
 
-    <p class="wrapper"><a href="/">Gallery AT</a> is developing new forms of documentation & distribution for performance.</p>
-- ?submitted says ty??
   </body>  
 </html>
 
