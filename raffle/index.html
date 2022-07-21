@@ -1,5 +1,82 @@
-<form action="https://fieldgoal.io/f/qrhxLG" method="POST" enctype="multipart/form-data">
-  <input type="text" name="contact" placeholder="email or phone" />
-  <input type="file" name="image" placeholder="pic" />
-  <button type="submit" value="submit">submit</button>
-</form>
+<html>
+  <head>
+    <link rel="stylesheet" href="cutestrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+    <meta property="og:image" content="https://galleryat.art/raffle/crab.jpg" />
+
+    <meta charset="utf-8">
+    <title>Raffle - Gallery AT</title>
+    <meta name="description" content="">
+  </head>
+
+  <body>
+    <section class="wrapper">
+      <p class="submitted" style="visibility: hidden;"><i>Thanks, want to do it again?</i> &#9759;</p>
+
+      <h5>🎟️ Gallery AT Art Raffle</h5>
+      <p>Submit as many photos as you want. Win 1 of 3 editions show at the bottom.</p>
+      <form action="https://fieldgoal.io/f/qrhxLG" method="POST" enctype="multipart/form-data">
+        <label class="field">
+          <input type="text" name="contact" />
+          <span class="label">email or phone</span>
+        </label>
+
+        <label class="field">
+          <input type="file" name="image" accept="image/*" capture="camera" onchange="showPreview(event);" required>
+        </label>
+
+        <button type="submit" value="submit">enter raffle</button>
+      </form>
+
+    <div class="preview-wrapper">
+      <img id="preview" />
+    </div>
+
+    <h5>Categories</h5>
+    <ul>
+      <li>Randomly Picked</li>
+      <li>Best Photobooth</li>
+      <li>Best Overall</li>
+    </ul>
+
+    <h5>Editions</h5>
+    <figure>
+      <img src="./editions/uninterrupted-dreams.jpg" />
+      <figcaption>
+        Emma Kohlmann - Uninterrupted Dreams (2019)<br />15"x11"
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="./editions/iter-portrait.jpg" />
+      <figcaption>
+        Leah Horowitz - Iter Portrait (2022)<br />11"x8.5"
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="./editions/die-kuche.jpg" />
+      <figcaption>
+        Todd Colby - die K&#252;che (2016)<br />3"x6"
+      </figcaption>
+    </figure>
+  
+    <script>
+      function showPreview(event){
+        if(event.target.files.length > 0){
+          var src = URL.createObjectURL(event.target.files[0]);
+          var preview = document.getElementById("preview");
+          preview.src = src;
+          preview.style.display = "block";
+        }
+      }
+
+      if (location.search.indexOf( '?submitted' ) !== -1) {
+        var submittedEl = document.querySelector('.submitted');
+        submittedEl.style.visibility = 'visible';
+      }
+    </script>
+
+    <p class="wrapper"><a href="/">Gallery AT</a> is developing new forms of documentation & distribution for performance.</p>
+- ?submitted says ty??
+  </body>  
+</html>
+
